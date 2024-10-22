@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapp
+  labels:
+    app: todoapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todoapp
+  template:
+    metadata:
+      labels:
+        app: todoapp
+    spec:
+      containers:
+        - name: todoapp
+          image: registry.digitalocean.com/cloud-computing/flask-tutorial:0.0.1  # Correct Image
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000  # Change to match port in service.yml
+

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapp
+  labels:
+    app: todoapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todoapp
+  template:
+    metadata:
+      labels:
+        app: todoapp
+    spec:
+      containers:
+        - name: todoapp
+          image: registry.digitalocean.com/cloud-computing/flask-tutorial:0.0.1
+          ports:
+            - containerPort: 5000
+      imagePullSecrets:
+        - name: cloud-computing  # This is the secret for registry authentication
+
